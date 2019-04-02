@@ -5,6 +5,7 @@ rsync -avrtzopgP --progress \
 /home/amaranth/.tmux.conf \
 /home/amaranth/.tmux.theme \
 /home/amaranth/.zshrc \
+/home/amaranth/.xinitrc \
 /home/amaranth/.local/bin \
 /home/amaranth/.config/i3 \
 /home/amaranth/.config/flake8 \
@@ -13,5 +14,4 @@ rsync -avrtzopgP --progress \
 /home/amaranth/.config/zathura \
 /home/amaranth/.config/polybar \
 /home/amaranth/.config/dunst \
-/home/amaranth/.config/tmux-powerline \
 /home/amaranth/Windows/Github/github/arch_conf
