@@ -1,0 +1,184 @@
+xterm*ScrollBar: true
+xterm*faceName: DejaVu Sans Mono for Powerline
+xterm*faceNameDoublesize: FontAwesome
+!xterm*faceNameDoublesize: WenQuanYi Micro Hei
+xterm*faceSize: 11
+xterm*allowBoldFonts: false
+xterm*foreground: grey100 
+xterm*background: #2e3436
+
+!!$HOME/.Xresources
+URxvt.preeditType:Root
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+!URxvt.keysym.Control-Shift-V:     perl:pasta:paste
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+
+! default input method
+URxvt.inputMethod:fcitx
+
+! color setup
+URxvt.depth:32
+
+
+URxvt.color24:  #076678
+URxvt.color66:  #427b58
+URxvt.color88:  #9d0006
+URxvt.color96:  #8f3f71
+URxvt.color100: #79740e
+URxvt.color108: #8ec07c
+URxvt.color109: #83a598
+URxvt.color130: #af3a03
+URxvt.color136: #b57614
+URxvt.color142: #b8bb26
+URxvt.color167: #fb4934
+URxvt.color175: #d3869b
+URxvt.color208: #fe8019
+URxvt.color214: #fabd2f
+URxvt.color223: #ebdbb2
+URxvt.color228: #f2e5bc
+URxvt.color229: #fbf1c7
+URxvt.color230: #f9f5d7
+URxvt.color234: #1d2021
+URxvt.color235: #282828
+URxvt.color236: #32302f
+URxvt.color237: #3c3836
+URxvt.color239: #504945
+URxvt.color241: #665c54
+URxvt.color243: #7c6f64
+URxvt.color244: #928374
+URxvt.color245: #928374
+URxvt.color246: #a89984
+URxvt.color248: #bdae93
+URxvt.color250: #d5c4a1
+
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+! hard contrast: *background: #1d2021
+*background: [85]#282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+*color10: #b8bb26
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+*color14: #8ec07c
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2
+
+!URxvt.inheritPixmap:true
+!URxvt.background:[85]#2e3436
+!URxvt.foreground:white
+!URxvt.colorBD:yellow
+!URxvt.colorUL:green
+!URxvt.cursorColor:white
+!!URxvt.color0:black
+!URxvt.color1:orangered
+!URxvt.color2:springgreen
+!URxvt.color3:gold1
+!URxvt.color4:rgb:34/65/A4
+!URxvt.color5:Magenta2
+!URxvt.color6:#06989A
+!URxvt.color7:gray85
+!URxvt.color8:gray10
+!URxvt.color9:orangered2
+!URxvt.color10:chartreuse3
+!URxvt.color11:lightgoldenrod2
+!URxvt.color12:DodgerBlue
+!URxvt.color13:white
+!URxvt.color14:lightblue1
+!URxvt.color15:Gray95
+
+! scroll bar setting
+URxvt.scrollBar:False
+URxvt.scrollBar_floating:False
+URxvt.scrollstyle:plain
+
+! scroll screen setting
+URxvt.mouseWheelScrollPage:True
+URxvt.scrollTtyOutput:False
+URxvt.scrollWithBuffer:True
+URxvt.scrollTtyKeypress:True
+
+! cursor splash
+URxvt.cursorBlink:True
+URxvt.saveLines:3000
+
+! border setting
+URxvt.borderLess:False
+
+! font setting
+URxvt.letterSpace:0
+URxvt.font:xft:Monaco for Powerline:pixelsize=13, \
+xft:YaHei Monaco Hybird:regular:antialias=true:pixelsize=13, \
+xft:FontAwesome:style=Medium:antialias=false:pixelsize=13:minspace=False, \
+xft:Wucon Siji:pixelsize=13:minspace=False
+!xft:Symbola:size=12, \
+!URxvt.font:xft:Monaco Nerd Font:size=11, \
+!URxvt.font:xft:YaHei Monaco Hybird:regular:antialias=true:pixelsize=14
+!URxvt.font:xft:wqy-microhei:size=11, xft:Monaco for Powerline:antialias=true:size=11
+
+! default web browser
+URxvt.urlLauncher:/usr/bin/google-chrome-stable
+URxvt.matcher.button:1
+URxvt.perl-ext-common: default,matcher,clipboard
+
+
+! Enable the extended coloring options
+rofi.color-enabled: true
+!                  bg       border   separator
+rofi.color-window: #282828, #a89984, #a89984
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: #282828, #ebdbb2, #32302f, #665c54, #fbf1c7
+rofi.color-active: #d79921, #282828, #d79921, #fabd2f, #282828
+rofi.color-urgent: #cc241d, #282828, #cc241d, #fb4934, #282828
+
+rofi.separator-style: solid
+rofi.sidebar-mode: true
+rofi.bw: 1
+rofi.columns: 1
+rofi.padding: 16
+
+rofi.yoffset: 0
+rofi.fake-transparency: false
+rofi.location: 0
+rofi.width: 50
+rofi.font: Monaco for Powerline 12
+rofi.lines: 15
+rofi.fixed-num-lines: true
+
+xscreensaver.splash: false
+xscreensaver.Dialog.foreground: #ebdbb2
+xscreensaver.Dialog.background: #282828
+xscreensaver.Dialog.topShadowColor: #0a0a0a
+xscreensaver.Dialog.bottomShadowColor: #161616
+xscreensaver.Dialog.Button.foreground: #ebdbb2
+xscreensaver.Dialog.Button.background: #282828
+xscreensaver.Dialog.borderWidth: 0
+xscreensaver.Dialog.internalBorderWidth: 0
+xscreensaver.passwd.thermometer.background: #282828
+xscreensaver.passwd.thermometer.foreground: #fbf1c7
+xscreensaver.passwd.thermometer.width: 8

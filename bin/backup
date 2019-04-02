@@ -1,0 +1,15 @@
+rsync -avrtzopgP --progress \
+/home/amaranth/.vimrc \
+/home/amaranth/.Xresources \
+/home/amaranth/.rtorrent.rc \
+/home/amaranth/.tmux.conf \
+/home/amaranth/.tmux.theme \
+/home/amaranth/.zshrc \
+/home/amaranth/.local/bin \
+/home/amaranth/.config/i3 \
+/home/amaranth/.config/polybar \
+/home/amaranth/.config/dunst \
+/home/amaranth/.config/tmux-powerline \
+/home/amaranth/Windows/Google-Drive/Arch \
+&& cd /home/amaranth/Windows/Google-Drive && proxychains4 grive -s Arch && cd -
+
