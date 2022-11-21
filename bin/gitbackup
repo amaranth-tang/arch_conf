@@ -1,4 +1,6 @@
-rsync -avrtzopgP --progress \
+rsync -avrtzopgP \
+--exclude='.git' \
+--progress \
 /home/amaranth/.vimrc \
 /home/amaranth/.vim \
 /home/amaranth/.xinitrc \
