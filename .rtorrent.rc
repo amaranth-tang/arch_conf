@@ -92,7 +92,7 @@ protocol.encryption.set = allow_incoming,enable_retry,prefer_plaintext
 # "auto" (start and stop DHT as needed), or "on" (start DHT immediately).
 # The default is "off". For DHT to work, a session directory must be defined.
 # 
-dht.mode.set = auto
+dht.mode.set = off
 
 # UDP port to use for DHT. 
 #

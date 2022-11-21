@@ -2,6 +2,9 @@ set nocompatible              " be iMproved, required
 filetype off                  " required
 filetype indent on
 
+if has('python3')
+endif
+
 com Bd bp | sp | bn | bd
 
 " dein
@@ -17,42 +20,62 @@ if dein#load_state('~/.cache/dein')
     call dein#begin(expand('~/.cache/dein'))
 " add packages here, e.g:
     call dein#add('wsdjeg/dein-ui.vim')
-    call dein#add('tmux-plugins/vim-tmux-focus-events')
-    call dein#add('roxma/vim-tmux-clipboard')
+    "call dein#add('tmux-plugins/vim-tmux-focus-events')
+    "call dein#add('roxma/vim-tmux-clipboard')
     call dein#add('christoomey/vim-tmux-navigator')
-    call dein#add('bling/vim-airline')
-    call dein#add('vim-airline/vim-airline-themes')
+    "call dein#add('bling/vim-airline')
+    "call dein#add('vim-airline/vim-airline-themes')
     call dein#add('scrooloose/nerdcommenter')
-    "call dein#add('scrooloose/syntastic')
+    " coc-explorer
     call dein#add('scrooloose/nerdtree')
     call dein#add('jistr/vim-nerdtree-tabs')
     call dein#add('jiangmiao/auto-pairs')
-    call dein#add('kien/ctrlp.vim')
     call dein#add('ervandew/supertab')
-    "call dein#add('godlygeek/tabular')
-    call dein#add('junegunn/vim-easy-align')
     call dein#add('easymotion/vim-easymotion')
+    call dein#add('roxma/vim-window-resize-easy')
     call dein#add('terryma/vim-multiple-cursors')
     call dein#add('qpkorr/vim-bufkill')
-    call dein#add('majutsushi/tagbar')
+    call dein#add('Yggdroot/LeaderF')
     call dein#add('magic-dot-files/TagHighlight')
     call dein#add('mbbill/undotree')
-    call dein#add('w0rp/ale')
     call dein#add('kien/rainbow_parentheses.vim')
     call dein#add('Yggdroot/indentLine')
-    call dein#add('roman/golden-ratio')
+    call dein#add('mhinz/vim-startify')
+    call dein#add('dense-analysis/ale')
+    call dein#add('skywind3000/asyncrun.vim')
+    call dein#add('PyCQA/isort')
+    call dein#add('liuchengxu/vim-which-key')
+    "call dein#add('SirVer/ultisnips')
+    call dein#add('honza/vim-snippets')
+    call dein#add('sillybun/zytutil')
+    call dein#add('sillybun/vim-repl')
 
 
-    "call dein#add('vim-scripts/Pydiction')
-    call dein#add('davidhalter/jedi-vim')
+    " git
+    call dein#add('tpope/vim-fugitive')
+    call dein#add('airblade/vim-gitgutter')
+
+
+    "" python
+    call dein#add('kh3phr3n/python-syntax')
+    call dein#add('tmhedberg/SimpylFold')
     call dein#add('Vimjas/vim-python-pep8-indent')
-    "call dein#add('vim-scripts/indentpython.vim')
-    "call dein#add('nvie/vim-flake8')
-    call dein#add('tell-k/vim-autopep8')
-    call dein#add('sillybun/setbreakpoints_python')
-    "call dein#add('sillybun/autoformatpythonstatement')
+    "call dein#add('sillybun/setbreakpoints_python')
+    call dein#add('davidhalter/jedi-vim')
+    call dein#add('deoplete-plugins/deoplete-jedi')
+    call dein#add('Shougo/deoplete.nvim')
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
 
+
+    " markdown
     call dein#add('plasticboy/vim-markdown')
+    call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+                    \ 'build': 'sh -c "cd app && yarn install"' })
+    "call dein#add('iamcco/markdown-preview.nvim', {'on_ft': ['markdown', 'pandoc.markdown', 'rmd'],
+    "call dein#add('iamcco/markdown-preview.nvim', {'build': 'cd app && yarn install'})
 
 " exit dein
     call dein#end()
@@ -82,6 +105,8 @@ let g:vim_markdown_math = 1
 " Allow for the TOC window to auto-fit when it's possible for it to shrink
 let g:vim_markdown_toc_autofit = 1
 
+" markdown-preview.nvim
+let g:mkdp_browser = 'firefox'
 
 
 
@@ -89,7 +114,7 @@ let g:vim_markdown_toc_autofit = 1
 " python settting
 let python_highlight_all=1
 " 运行文件
-map <F5> :w<cr>:r!time python %<cr>
+"map <F5> :w<cr>:r!time python %<cr>
 "map <F5> :call CompileRunGcc()<CR>
 "func! CompileRunGcc()
     "exec "w"
@@ -120,42 +145,54 @@ map <F5> :w<cr>:r!time python %<cr>
 
 
 
-" Pydiction
-"let g:pydiction_location = '/home/amaranth/.cache/dein/repos/github.com/vim-scripts/Pydiction/complete-dict'
-"let g:pydiction_menu_height = 5
+" python-syntax
+let g:python_highlight_all = 1
+
+" SimpylFold
+let g:SimpylFold_docstring_preview = 0
+let g:SimpylFold_fold_docstring = 1
+let b:SimpylFold_fold_docstring = 1
+let g:SimpylFold_fold_import = 1
+let b:SimpylFold_fold_import = 1
+
+" deoplete
+set pyxversion=3
+let g:deoplete#enable_at_startup = 1
 
 " jedi
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#use_splits_not_buffers = "left"
 let g:jedi#popup_select_first = 0
 let g:jedi#show_call_signatures = "2"
+let g:jedi#completions_enabled = 0
 
 " vim-python-pep8-indent
-python_pep8_indent_hang_closing = 1
-
-" flake8
-" 保存文件时自动进行pep8的检查
-"autocmd BufWritePost *.py call Flake8()
-
-" autopep8
-autocmd FileType python noremap <buffer> <F6> :call Autopep8()<CR>:w<CR>
-"let g:autopep8_disable_show_diff=1
-let g:autopep8_pep8_passes=100
-let g:autopep8_max_line_length=120
-" 1:(--aggressive), 2:(--aggressive --aggressive)
-let g:autopep8_aggressive=2
-
-" indentline
-let g:indentLine_char='┆'
-let g:indentLine_enabled = 1
+"python_pep8_indent_hang_closing = 1
 
 " sillybun
 " setbreakpoints_python
-autocmd FileType python nnoremap <F12> :call ToggleBreakPoint()<Cr>
+"autocmd FileType python nnoremap <F12> :call ToggleBreakPoint()<Cr>
 " autoformatpythonstatement
-autocmd FileType python let g:autoformatpython_enabled = 1
+"autocmd FileType python let g:autoformatpython_enabled = 1
 
 
+
+" quickfix toggle
+"nnoremap <F11> :call QuickfixToggle()<cr>
+
+"let g:quickfix_is_open = 0
+
+"function! QuickfixToggle()
+    "if g:quickfix_is_open
+        "cclose
+        "let g:quickfix_is_open = 0
+    "else
+        "copen
+        "let g:quickfix_is_open = 1
+    "endif
+"endfunction
+"nnoremap <leader>cn :cn<cr>
+"nnoremap <leader>cp :cp<cp>
 
 " powerline font patch
 let g:powerline_pycmd="py3"
@@ -163,8 +200,8 @@ let g:powerline_pycmd="py3"
 " clipboard
 "vnoremap <C-c> y: call system("xclip -i", getreg("\""))<CR>
 "noremap <C-Q> :r !xclip -o <CR>
-vmap <c-c> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
-"nmap <c-v> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p")")")"))
+"vmap <c-c> y:call system("xclip -i -selection clipboard", getreg("\""))<cr>:call system("xclip -i", getreg("\""))<cr>
+"nnoremap <c-v> :call setreg("\"",system("xclip -o -selection clipboard"))<cr>p")")")"))
 
 " Write all buffers before navigating from Vim to tmux
 let g:tmux_navigator_save_on_switch = 2
@@ -172,7 +209,7 @@ let g:tmux_navigator_save_on_switch = 2
 " 修复Esc延迟
 set ttimeoutlen=0
 " 关闭自动缩进
-set pastetoggle=<F9>
+set pastetoggle=<F8>
 
 " settings
 syntax enable
@@ -186,9 +223,14 @@ noremap / :set hlsearch<cr>/
 noremap ? :set hlsearch<cr>?
 noremap * *:set hlsearch<cr>
 
-let mapleader=','
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
 let g:rehash256 = 1
 set t_Co=256
+set wildmenu
+set wildmode=list:longest,full
+"set wildmode=longest:list,full
+set clipboard=unnamedplus
 
 " scheme color
 "colorscheme obsidian
@@ -197,8 +239,8 @@ set background=dark
 colorscheme gruvbox
 
 set termencoding=utf-8
-set encoding=utf8
-set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
+set encoding=utf-8
+set fileencodings=utf-8,ucs-bom,gbk,cp936,gb2312,gb18030
 " 启用光标行
 set cursorline
 " 启用光标列
@@ -285,8 +327,8 @@ let Tlist_Ctags_Cmd ='/usr/bin/ctags'
 "autocmd VimEnter * wincmd p
 " 打开新的buffer时自动定位到编辑窗口
 autocmd StdinReadPre * let s:std_in=1
-" 当不带参数打开 Vim 时自动加载项目树
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" 当不带参数打开 Vim 时自动加载项目树(disable with vim-startify)
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " 按下 F2 调出/隐藏 NERDTree
 map <silent> <F2> :NERDTreeToggle<CR>
 "当NERDTree为剩下的唯一窗口时自动关闭
@@ -300,7 +342,7 @@ let NERDTreeAutoCenter=1
 " 是否显示隐藏文件
 let NERDTreeShowHidden=1
 " " 设置宽度
-let NERDTreeWinSize=31
+let NERDTreeWinSize=30
 " " 在终端启动vim时，共享NERDTree
 "let g:nerdtree_tabs_open_on_console_startup=1
 " " 忽略以下文件的显示
@@ -318,8 +360,8 @@ let g:airline#extensions#tabline#enabled = 1
 " 打开tabline功能,方便查看Buffer和切换，这个功能比较不错
 let g:airline#extensions#tabline#buffer_nr_show = 1
 "设置切换Buffer快捷键"
-nnoremap <C-N> :bn<CR>
-nnoremap <C-P> :bp<CR>
+"nnoremap <C-N> :bn<CR>
+"nnoremap <C-P> :bp<CR>
 "let g:airline#extensions#whitespace#enabled=0
 " 关闭空白符检测
 
@@ -337,31 +379,6 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-
-
-
-" ctrlp settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " Linux/MacOSX
-
-let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-
-
-
-" syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-"map <F10> :SyntasticToggleMode<CR>
 
 
 
@@ -385,22 +402,62 @@ augroup YourGroup
     autocmd User ALELint    call YourFunction()
 augroup END
 let g:ale_set_loclist = 0
-let g:ale_set_quickfix = 1
-let g:ale_open_list = 1
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
 
 " 自定义跳转错误行快捷键
-nmap <Leader>k <Plug>(ale_previous_wrap)
-nmap <Leader>j <Plug>(ale_next_wrap)
+nnoremap <Leader>p <Plug>(ale_previous_wrap)
+nnoremap <Leader>m <Plug>(ale_next_wrap)
 " <F10>触发/关闭语法检查
-map <F10> :ALEToggle<CR>
+"map <F10> :ALEToggle<CR>
 " <F11>查看错误或警告的详细信息
-map <F11> :ALEDetail<CR>
+"map <F11> :ALEDetail<CR>
 
 " 关闭实时语法检查,仅在保存文件是运行Linters
 " 文件内容发生变化时不进行检查
 let g:ale_lint_on_text_changed = 'never'
 " 打开文件时不进行检查
 let g:ale_lint_on_enter = 0
+" 保存时自动修复文件
+"let g:ale_fix_on_save = 1
+let g:ale_linters = {'python': ['flake8'],}
+" Suggested Fixers:
+" 'add_blank_lines_for_python_control_statements' - Add blank lines before control statements.
+" 'autopep8' - Fix PEP8 issues with autopep8.
+" 'black' - Fix PEP8 issues with black.
+" 'isort' - Sort Python imports with isort.
+" 'remove_trailing_lines' - Remove all blank lines at the end of a file.
+" 'trim_whitespace' - Remove all trailing whitespace characters at the end of every line.
+" 'yapf' - Fix Python files with yapf.
+let g:ale_fixers = {
+\ 'python': ['isort', 'yapf'],
+\}
+nnoremap <F4> :ALEFix<cr>:w<cr>
+
+
+
+" indentLine
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+
+
+" vim-fugitive
+" maps .. to oepn the parent tree for buffers containing a git blob or tree
+autocmd User fugitive 
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif')'
+" auto clean fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
+" open quickfix window after any grep invocation
+autocmd QuickFixCmdPost *grep* cwindow
+
+
+
+" airblade/vim-gitgutter
+" You can jump between hunks with [c and ]c. You can preview, stage, and undo
+" hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+set updatetime=100
 
 
 
@@ -412,49 +469,32 @@ let g:SuperTabMappingBackward="<S-Tab>"
 
 
 
-" Tabular settings
-"let mapleader=','
-"if exists(":Tabularize")
-    "nmap <Leader>a= :Tabularize /=<CR>
-    "vmap <Leader>a= :Tabularize /=<CR>
-    "nmap <Leader>a: :Tabularize /:\zs<CR>
-    "vmap <Leader>a: :Tabularize /:\zs<CR>
-"endif
-
-"inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-
-"function! s:align()
-    "let p = '^\s*|\s.*\s|\s*$'
-    "if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-        "let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-        "let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-        "Tabularize/|/l1
-        "normal! 0
-        "call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-    "endif
-"endfunction
-
-
-
 " vim-easy-align settings
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
+nnoremap ga <Plug>(EasyAlign)
 
 
 
 " tagbar settings
-nmap <silent><F3> :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/bin/ctags'
-let g:tagbar_width=30
-autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
-let g:tagbar_autofocus=1
+"nnoremap <silent><F3> :TagbarToggle<CR>
+"let g:tagbar_ctags_bin='/usr/bin/ctags'
+"let g:tagbar_width=30
+"autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx call tagbar#autoopen()
+"let g:tagbar_autofocus=1
+
+
+
+" LeaderF
+let g:Lf_ShortcutF = '<C-P>'
+let g:Lf_StlColorscheme = 'gruvbox_material'
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 
 
 
 " undortree settings
-nnoremap <F4> :UndotreeToggle<cr>
+nnoremap <F3> :UndotreeToggle<cr>
 
 
 
@@ -483,3 +523,79 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+
+
+" vim-startify
+autocmd VimEnter *
+\   if !argc()
+\ |   Startify
+\ |   NERDTree
+\ |   wincmd w
+\ | endif
+"let NERDTreeHijackNetrw = 0
+
+
+
+" asyncrun
+let g:asyncrun_open = 8
+let g:asyncrun_bell = 1
+nnoremap <F9> :call asyncrun#quickfix_toggle(8)<cr>
+"nnoremap <silent> <F5> :w<cr>:AsyncRun -raw python -u %<cr>
+augroup python_file
+	autocmd!
+	autocmd FileType python nnoremap <F5> :w<cr>:AsyncRun -raw python -u %<cr>
+augroup END
+
+
+
+" isort
+"autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+
+
+
+" vim-which-key
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+
+
+
+" ultisnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+
+" vim-repl
+let g:repl_program = {
+            \   'python': 'ipython',
+            \   'default': 'zsh',
+            \   }
+let g:repl_exit_commands = {
+            \   'python': 'quit()',
+            \   'bash': 'exit',
+            \   'zsh': 'exit',
+            \   'default': 'exit',
+            \   }
+let g:repl_predefine_python = {
+            \   'numpy': 'import numpy as np',
+            \   'matplotlib': 'from matplotlib import pyplot as plt'
+            \   }
+"let g:repl_checkpoint_position = '~/.temp/'
+let g:repl_auto_sends = ['class ', 'def ']
+let g:repl_cursor_down = 1
+nnoremap <F6> :REPLToggle<Cr>
+autocmd Filetype python nnoremap <F12> <Esc>:REPLDebugStopAtCurrentLine<Cr>
+autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
+autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
+"let g:repl_checkpoint_notation = "CP"
+let g:repl_position = 1
+"let g:repl_width = None
+let g:repl_height = 10
+tnoremap <C-h> <C-w><C-h>
+tnoremap <C-j> <C-w><C-j>
+tnoremap <C-k> <C-w><C-k>
+tnoremap <C-l> <C-w><C-l>

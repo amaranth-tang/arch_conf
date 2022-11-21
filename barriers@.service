@@ -1,0 +1,16 @@
+[Unit]
+Description=Barrier Service daemon
+After=network.target
+
+[Service]
+PassEnvironment=DISPLAY
+ExecStart=/usr/bin/barriers --address %i --disable-crypto --no-restart --no-daemon --config %h/.config/barrier/.barrier.conf
+Type=simple
+ProtectHome=read-only
+ProtectSystem=true
+PrivateTmp=true
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

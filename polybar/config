@@ -52,42 +52,42 @@ amber6 = #FFB300
 amber7 = #FFA000
 amber8 = #FF8F00
 
-[bar/DVI-D-0]
-;bottom = true
-;override-redirect = true
-wm-restack = i3
+;[bar/DVI-D-0]
+;;bottom = true
+;;override-redirect = true
+;wm-restack = i3
 
-monitor = ${env:MONITOR:DVI-D-0}
-width = 100%
-height = 15
-;offset-x = 1%
-;offset-y = 1%
-radius = 0
-fixed-center = false
-background = ${colors.background}
-foreground = ${colors.foreground}
+;monitor = ${env:MONITOR:DVI-D-0}
+;width = 100%
+;height = 15
+;;offset-x = 1%
+;;offset-y = 1%
+;radius = 0
+;fixed-center = false
+;background = ${colors.background}
+;foreground = ${colors.foreground}
 
-line-size = 1
-line-color = #f00
+;line-size = 1
+;line-color = #f00
 
-border-size = 1
-#border-color = #00000000
-border-color = #222
+;border-size = 1
+;#border-color = #00000000
+;border-color = #222
 
-padding-left = 0
-padding-right = 0
+;padding-left = 0
+;padding-right = 0
 
-module-margin-left = 1
-module-margin-right = 2
+;module-margin-left = 1
+;module-margin-right = 2
 
-font-0 = Monaco Nerd Font:pixelsize=9;3
-font-1 = FontAwesome:pixelsize=9;3
-font-2 = YaHei Monaco Hybird:pixelsize=9;3
-font-3 = Wuncon Siji:pixelsize=9;3
+;font-0 = Monaco Nerd Font:pixelsize=9;3
+;font-1 = FontAwesome:pixelsize=9;3
+;font-2 = YaHei Monaco Hybird:pixelsize=9;3
+;font-3 = Wuncon Siji:pixelsize=9;3
 
-modules-left = i3
-modules-center =
-modules-right = date
+;modules-left = i3
+;modules-center =
+;modules-right = date
 
 [bar/HDMI-0]
 monitor = ${env:MONITOR:HDMI-0}
@@ -117,11 +117,11 @@ module-margin-right = 1
 font-0 = Monaco Nerd Font:pixelsize=9;3
 font-1 = FontAwesome:pixelsize=9;3
 font-2 = YaHei Monaco Hybird:pixelsize=9;3
-font-3 = Wuncon Siji:pixelsize=9;3
+font-3 = Siji:pixelsize=9;3
 
 modules-left = i3
 modules-center = xwindow
-modules-right = networkspeeddown networkspeedup filesystem home ntfs memory cpu wlan eth weather pulseaudio1 date powermenu
+modules-right = networkspeeddown networkspeedup filesystem home ntfs memory cpu eth weather pulseaudio1 date powermenu
 
 tray-position = right
 tray-padding = 10
@@ -194,7 +194,7 @@ label-unmounted-underline = ${colors.secondary}
 type = internal/fs
 interval = 25
 
-mount-0 = /home/amaranth/Windows
+mount-0 = /home/NTFS
 
 label-mounted = %{F#0a81f5}NTFS%{F-}: %percentage_used%%
 label-unmounted = NTFS not mounted

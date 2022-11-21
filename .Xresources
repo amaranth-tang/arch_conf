@@ -1,3 +1,4 @@
+Xft.dpi : 89
 xterm*ScrollBar: true
 xterm*faceName: DejaVu Sans Mono for Powerline
 xterm*faceNameDoublesize: FontAwesome
@@ -61,7 +62,7 @@ URxvt.color250: #d5c4a1
 ! -----------------------------------------------------------------------------
 
 ! hard contrast: *background: #1d2021
-*background: [85]#282828
+*background: #282828
 ! soft contrast: *background: #32302f
 *foreground: #ebdbb2
 ! Black + DarkGrey
@@ -132,7 +133,7 @@ URxvt.borderLess:False
 
 ! font setting
 URxvt.letterSpace:0
-URxvt.font:xft:Monaco for Powerline:pixelsize=13, \
+URxvt.font:xft:Monaco for Powerline:antialias=true:pixelsize=13, \
 xft:YaHei Monaco Hybird:regular:antialias=true:pixelsize=13, \
 xft:FontAwesome:style=Medium:antialias=false:pixelsize=13:minspace=False, \
 xft:Wucon Siji:pixelsize=13:minspace=False
@@ -166,9 +167,10 @@ rofi.yoffset: 0
 rofi.fake-transparency: false
 rofi.location: 0
 rofi.width: 50
-rofi.font: Monaco for Powerline 12
+rofi.font: YaHei Monaco Hybird 12
 rofi.lines: 15
 rofi.fixed-num-lines: true
+rofi.terminal: kitty
 
 xscreensaver.splash: false
 xscreensaver.Dialog.foreground: #ebdbb2
